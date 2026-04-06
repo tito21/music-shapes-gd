@@ -15,6 +15,8 @@ matrix generated and optimized for each iteration.
 
 The shapes can be any set of black and white images with alpha. In this example I used musical shapes.
 
+![Set of musical shapes used](music_shapes.jpg)
+
 # Installation and usage
 
 I use [uv](https://docs.astral.sh/uv/) to manage the dependencies. Assuming uv is installed you can run the program by

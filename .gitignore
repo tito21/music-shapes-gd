@@ -11,3 +11,4 @@ __pycache__/
 *.mp4
 !images/*.png
 !output/rendered_*.png
+!music_shapes.jpg
