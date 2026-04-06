@@ -1,4 +1,4 @@
-# diff-rendering
+# Gradient descent over shapes
 
 ![Mona Lisa rendered with musical shapes](output/rendered_image.png)
 

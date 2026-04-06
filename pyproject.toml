@@ -1,7 +1,7 @@
 [project]
-name = "diff-rendering"
+name = "music-shapes-gd"
 version = "0.1.0"
-description = "Add your description here"
+description = "Art project to generate any image from simple shapes using gradient descent"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
