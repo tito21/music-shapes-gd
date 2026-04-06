@@ -50,3 +50,9 @@ options:
                         Number of inner optimization steps per source image
 
 ```
+
+# LICENCE
+
+The code is licence under the MIT licence
+
+I don't own the copyright for the musical shape images
