@@ -23,19 +23,18 @@ def parse_args():
         type=pathlib.Path,
         help="Path to the input image",
     )
+    parser.add_argument(
+        "output_dir",
+        type=pathlib.Path,
+        default="output",
+        help="Directory to save output images",
+    )
 
     parser.add_argument(
         "--source_dir",
         type=pathlib.Path,
         default="images",
         help="Directory containing source images",
-    )
-
-    parser.add_argument(
-        "--output_dir",
-        type=pathlib.Path,
-        default="output",
-        help="Directory to save output images",
     )
 
     parser.add_argument(
@@ -149,12 +148,6 @@ def main():
                         dest_image.clone().cpu(),
                         str(destination_path / f"intermediate_{i:04d}.png"),
                     )
-        # mask = (saliency_map[:, :, :, :] == 0).float()
-        # save_image(
-        #             mask.clone().cpu(),
-        #             str(destination_path / f"intermediate_alpha_{i:04d}.png"),
-        #         )
-        # dest_image = render_image(dest_image, source_image, theta, input_image)
 
     output_file = destination_path / "rendered_image.png"
     save_image(dest_image.cpu(), str(output_file))

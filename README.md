@@ -22,6 +22,7 @@ just doing
 
 ```shell
 uv run main.py input_image \
+               output_dir \
                [--source_dir SOURCE_DIR] \
                [--output_dir OUTPUT_DIR] \
                [--saliency_map SALIENCY_MAP] \
@@ -36,13 +37,12 @@ The options are available:
 ```
 positional arguments:
   input_image           Path to the input image
+  output_dir            Directory to save output images
 
 options:
   -h, --help            show this help message and exit
   --source_dir SOURCE_DIR
                         Directory containing source images
-  --output_dir OUTPUT_DIR
-                        Directory to save output images
   --saliency_map SALIENCY_MAP
                         Path to the saliency map image
   --steps STEPS         Number of optimization steps
