@@ -111,12 +111,10 @@ def main():
     for i in bar:
         idx = torch.randint(0, len(source_images), (1,)).item()
         source_image = source_images[idx]
+        ratio = source_image.shape[2] / source_image.shape[3]
         angle = torch.randn(1, device=device) * 0.5
-        scale = torch.tensor([0.5 + torch.rand(1, device=device) * 0.5, 0.5 + torch.rand(1, device=device) * 0.5], device=device)
-        translation = torch.tensor([
-            -0.5 + torch.rand(1, device=device),
-            -0.5 + torch.rand(1, device=device)
-        ], device=device)
+        scale = (0.5 + torch.rand(1, device=device) * 0.5)
+        translation = -0.5 + torch.rand(2, device=device)
         color = torch.rand(4, device=device)
         angle.requires_grad = True
         scale.requires_grad = True
@@ -128,7 +126,8 @@ def main():
 
         for step in range(args.inner_steps):
             optim.zero_grad()
-            theta = get_theta(angle, scale, translation)
+            scale_clamped = torch.clamp(scale, 1.0, 10.0)
+            theta = get_theta(angle, scale_clamped, translation, ratio=ratio)
             rendered_image = render_image(
                 dest_image, source_image, theta, color
             )

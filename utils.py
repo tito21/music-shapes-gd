@@ -5,16 +5,17 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 
-def get_theta(angle, scale, translation):
-    angle = torch.fmod(angle + 3.14159265, 2 * 3.14159265) - 3.14159265  # Wrap angle to [-pi, pi]
+def get_theta(angle, scale, translation, ratio=1.0):
+    angle = torch.fmod(angle + torch.pi, 2 * torch.pi) - torch.pi  # Wrap angle to [-pi, pi]
     s = torch.sin(angle)
     c = torch.cos(angle)
+    # translation = torch.clamp(translation, -1.0, 1.0)
     theta = torch.stack([
-        torch.stack([scale[0] * c, -s, translation[0:1]]),
-        torch.stack([s, scale[1] * c, translation[1:2]]),
+        torch.stack([scale * ratio * c, -scale * ratio * s, translation[0:1]]),
+        torch.stack([scale * s,  scale * c, translation[1:2]]),
     ])
     theta = theta.to(angle.device)
-    theta = torch.clamp(theta, -1.0, 1.0)
+    # theta = torch.clamp(theta, -1.0, 1.0)
     return theta.unsqueeze(0).squeeze(-1)  # Add batch dimension
 
 
@@ -39,7 +40,6 @@ def blur_image(image, kernel_size=5, sigma=1.0):
 
 
 def render_image(dest, source, transform_matrix, color):
-
     grid = F.affine_grid(transform_matrix, dest.size(), align_corners=False)
     # rendered = blur_image(F.grid_sample(source, grid, align_corners=False, mode='bilinear', padding_mode='zeros'), kernel_size=5, sigma=1.0)
     rendered = F.grid_sample(source, grid, align_corners=False, mode='bilinear', padding_mode='zeros')
