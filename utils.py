@@ -11,8 +11,8 @@ def get_theta(angle, scale, translation, ratio=1.0):
     c = torch.cos(angle)
     # translation = torch.clamp(translation, -1.0, 1.0)
     theta = torch.stack([
-        torch.stack([scale * ratio * c, -scale * ratio * s, translation[0:1]]),
-        torch.stack([scale * s,  scale * c, translation[1:2]]),
+        torch.stack([scale * ratio * c, -scale * ratio * s, scale * ratio * translation[0:1]]),
+        torch.stack([scale * s,  scale * c, scale * translation[1:2]]),
     ])
     theta = theta.to(angle.device)
     # theta = torch.clamp(theta, -1.0, 1.0)

@@ -1,6 +1,6 @@
 # Gradient descent over shapes
 
-![Mona Lisa rendered with musical shapes](output/rendered_image.png)
+![Mona Lisa rendered with musical shapes](gallery/vg_2.png)
 
 Every couple of years I seam to come across a project that renders an image from basic shapes. The earliest that I know
 of is by [Roger Johansson](https://rogerjohansson.blog/2008/12/07/genetic-programming-evolution-of-mona-lisa/) in 2008,
